@@ -5,8 +5,8 @@ using System;
 
 public class WanderState : BaseState
 {
-    private Enemy enemy; //this go
-    GameObject player => GameObject.Find("Player");
+    private Enemy enemy; 
+    GameObject player => GameObject.FindWithTag("Player");
     public WanderState(Enemy enemy) : base(enemy.gameObject)
     {
         this.enemy = enemy;
@@ -14,22 +14,25 @@ public class WanderState : BaseState
 
     public override Type Tick()
     {
-        this.gameObject.transform.position += new Vector3(0, 0, 1) * Time.deltaTime;
+        transform.position += new Vector3(0, 0, 1) * Time.deltaTime;
         var player = SearchTarget();
 
         if (player != null)
         {
-            enemy.SetTarget(player);
+           
             return typeof(ChasePlayerState);
         }
 
-        return null; // typeof(WanderState);
+        return typeof(WanderState);
     }
 
     private Transform SearchTarget() {
 
         if (Vector3.Distance(player.transform.position, enemy.transform.position) < 10f)
+        {
+            enemy.SetTarget(player.transform);
             return player.transform;
+        }
 
         return null;
     }

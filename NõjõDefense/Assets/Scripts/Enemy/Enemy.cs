@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
             { typeof(ChasePlayerState), new ChasePlayerState(this) }
         };
 
-        GetComponent<StateMachine>().SetStates(states);
+        StateMachine.SetStates(states);
     }
 
     public void SetTarget(Transform target)
