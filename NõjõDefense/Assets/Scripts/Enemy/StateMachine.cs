@@ -22,7 +22,7 @@ public class StateMachine : MonoBehaviour
         if (currentState == null)
             currentState = avaibleStates.Values.First();
 
-        var nextState = currentState?.Tick(); 
+        var nextState = currentState.Tick(); 
 
         if (nextState != null && nextState != nextState.GetType())
         {

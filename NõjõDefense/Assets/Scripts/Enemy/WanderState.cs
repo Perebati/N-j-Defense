@@ -2,38 +2,111 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Pathfinding;
 
 public class WanderState : BaseState
 {
     private Enemy enemy; 
-    GameObject player => GameObject.FindWithTag("Player");
+    GameObject _player => GameObject.FindWithTag("Player");
+    GameObject[] monument;
+
+    Seeker seeker;
+    Rigidbody rb;
+    Path _path;
+    private float nextWaypointDistance = 2f; // !
+    int currentWaypoint = 0;
+    private float timer = 0f;
+
     public WanderState(Enemy enemy) : base(enemy.gameObject)
     {
         this.enemy = enemy;
+        monument = GameObject.FindGameObjectsWithTag("Monument");
+        rb = this.enemy.GetComponent<Rigidbody>();
+        seeker = this.enemy.GetComponent<Seeker>();
     }
 
     public override Type Tick()
     {
-        transform.position += new Vector3(0, 0, 1) * Time.deltaTime;
+        if (enemy.enemyType != Enemy.EnemyType.MISERAVEL)
+            return typeof(ChasePlayerState);
+
         var player = SearchTarget();
 
         if (player != null)
-        {
-           
+        {        
             return typeof(ChasePlayerState);
         }
+
+        if (enemy._target != player || enemy._target == null)
+            enemy.SetTarget(NearestMonument());
+
+        timer += Time.deltaTime;
+        if (timer > 1f)
+            UpdatePath();
+
+        if (_path == null)
+        {
+            return typeof(WanderState);
+        }
+
+        Chase();
 
         return typeof(WanderState);
     }
 
     private Transform SearchTarget() {
 
-        if (Vector3.Distance(player.transform.position, enemy.transform.position) < 10f)
+        if (Vector3.Distance(_player.transform.position, enemy.transform.position) < enemy.playerDetectionRadius)
         {
-            enemy.SetTarget(player.transform);
-            return player.transform;
-        }
-
-        return null;
+            enemy.SetTarget(_player.transform);
+            return _player.transform;
+        }     
+        else
+            return null;
     }
+
+    private Transform NearestMonument()
+    {
+        int index = 1;
+
+        float d0 = Vector3.Distance(enemy.transform.position, monument[0].transform.position);
+        float d1 = Vector3.Distance(enemy.transform.position, monument[1].transform.position);
+        float d2 = Vector3.Distance(enemy.transform.position, monument[2].transform.position);
+
+        if (d0 < d1 && d0 < d2)      
+            index = 0;
+        
+        if (d2 < d0 && d2 < d1)
+            index = 2;
+
+        return monument[index].transform;
+    }
+    private void OnPathComplete(Path path) // Callback
+    {
+        if (!path.error)
+        {
+            _path = path;
+            currentWaypoint = 0;
+        }
+    }
+
+    private void UpdatePath()
+    {
+        timer = 0;
+        if (seeker.IsDone())
+            seeker.StartPath(enemy.transform.position, enemy._target.position, OnPathComplete);
+    }
+
+    private void Chase()
+    {
+        if (_path.vectorPath.Count > currentWaypoint)
+        {
+            Vector3 dir = (_path.vectorPath[currentWaypoint] - rb.position).normalized;
+            transform.position += dir * enemy.speed * Time.deltaTime;
+            float distance = Vector3.Distance(rb.position, _path.vectorPath[currentWaypoint]);
+            if (distance < nextWaypointDistance && _path.vectorPath.Count > currentWaypoint)
+                currentWaypoint++;
+        }
+    }
+
 }

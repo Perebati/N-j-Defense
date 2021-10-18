@@ -6,25 +6,26 @@ using Pathfinding;
 
 public class ChasePlayerState : BaseState
 {
-
-    private float chaseSpeed = 1f;
     private float timer = 0f;
-    GameObject player => GameObject.FindWithTag("Player");
+    GameObject player;
 
     private Enemy enemy;
     Seeker seeker;
     Rigidbody rb;
 
     Path _path;
-    private float nextWaypointDistance = .7f; // !
+    private float nextWaypointDistance = 1f; // !
     int currentWaypoint = 0;
-    bool reachedTarget = false;
+    //bool reachedTarget = false;
 
     public ChasePlayerState(Enemy enemy) : base(enemy.gameObject)
     {
         this.enemy = enemy;
         seeker = this.enemy.GetComponent<Seeker>();
         rb = this.enemy.GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
+        if (enemy.enemyType != Enemy.EnemyType.MISERAVEL)
+            enemy.SetTarget(player.transform);
     }
     
     private void OnPathComplete(Path path) // Callback
@@ -44,15 +45,14 @@ public class ChasePlayerState : BaseState
     }
 
     public override Type Tick()
-    {    
-
+    {
         timer += Time.deltaTime;
         if (timer > 1f)
             UpdatePath();
 
-        if (_path == null)
+        if (_path == null || enemy._target != player.transform)
         {
-            return typeof(ChasePlayerState);
+            return typeof(WanderState);
         }
 
         Chase();
@@ -61,31 +61,35 @@ public class ChasePlayerState : BaseState
 
     private Type CheckTarget() // check if the player is in range, else, target = monument
     {
-        if (Vector3.Distance(rb.position, player.transform.position) > 11f)
-        {        
+        if (enemy.enemyType == Enemy.EnemyType.MISERAVEL && Vector3.Distance(enemy.transform.position, player.transform.position) > enemy.playerDetectionRadius)
+        {
+            _path = null;
             return typeof(WanderState);
         }
         else if (currentWaypoint >= _path.vectorPath.Count)
         {
-            reachedTarget = true;
+            //reachedTarget = true;
             //return typeof(AttackState);
             return typeof(ChasePlayerState);
         }
         else
         {
-            reachedTarget = false;
+            //reachedTarget = false;
             return typeof(ChasePlayerState);
         }
     }
 
     private void Chase()
     {
-
-        Vector3 dir = (_path.vectorPath[currentWaypoint] - rb.position).normalized;
-        transform.position += dir * chaseSpeed * Time.deltaTime;
-        float distance = Vector3.Distance(rb.position, _path.vectorPath[currentWaypoint]);
-        if (distance < nextWaypointDistance && _path.vectorPath.Count > currentWaypoint)
-            currentWaypoint++;
-    }
+        
+        if (_path.vectorPath.Count > currentWaypoint)
+        {
+            Vector3 dir = (_path.vectorPath[currentWaypoint] - rb.position).normalized;
+            transform.position += dir * enemy.speed * Time.deltaTime;
+            float distance = Vector3.Distance(rb.position, _path.vectorPath[currentWaypoint]);
+            if (distance < nextWaypointDistance && _path.vectorPath.Count > currentWaypoint)
+                currentWaypoint++;
+        }
+    } 
 
 }
