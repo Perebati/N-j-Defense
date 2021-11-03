@@ -49,9 +49,15 @@ public class WanderState : BaseState
             return typeof(WanderState);
         }
 
-        Chase();
+        float targetDistance = Chase();
 
-        return typeof(WanderState);
+        if (targetDistance < enemy.attackRange)
+        {
+            _path = null;
+            return typeof(AttackState);
+        }
+        else 
+            return typeof(WanderState);
     }
 
     private Transform SearchTarget() {
@@ -97,8 +103,10 @@ public class WanderState : BaseState
             seeker.StartPath(enemy.transform.position, enemy._target.position, OnPathComplete);
     }
 
-    private void Chase()
+    private float Chase()
     {
+        float targetDist = Vector3.Distance(enemy.transform.position, enemy._target.position);
+
         if (_path.vectorPath.Count > currentWaypoint)
         {
             Vector3 dir = (_path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -107,6 +115,9 @@ public class WanderState : BaseState
             if (distance < nextWaypointDistance && _path.vectorPath.Count > currentWaypoint)
                 currentWaypoint++;
         }
+
+        return targetDist;
+
     }
 
 }

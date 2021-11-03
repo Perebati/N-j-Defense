@@ -13,8 +13,10 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType;
     public float speed = 5f;
     public float playerDetectionRadius = 10f;
+    public float attackCooldown = 1f;
 
     [SerializeField] private int maxHealth = 100;
+    public int attackRange = 1;
 
     private int currentHealth;
     public Transform _target { get; private set; } // player or monument
@@ -32,7 +34,8 @@ public class Enemy : MonoBehaviour
         var states = new Dictionary<Type, BaseState>()
         {
             { typeof(WanderState), new WanderState(this) },
-            { typeof(ChasePlayerState), new ChasePlayerState(this) }
+            { typeof(ChasePlayerState), new ChasePlayerState(this) },
+            { typeof(AttackState), new AttackState(this) }
         };
 
         StateMachine.SetStates(states);
@@ -51,7 +54,6 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-
     private void Die()
     {
         Debug.Log("Died");

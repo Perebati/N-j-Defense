@@ -14,9 +14,8 @@ public class ChasePlayerState : BaseState
     Rigidbody rb;
 
     Path _path;
-    private float nextWaypointDistance = 1f; // !
+    private float nextWaypointDistance = 1f;
     int currentWaypoint = 0;
-    //bool reachedTarget = false;
 
     public ChasePlayerState(Enemy enemy) : base(enemy.gameObject)
     {
@@ -54,7 +53,6 @@ public class ChasePlayerState : BaseState
         {
             return typeof(WanderState);
         }
-
         Chase();
         return CheckTarget();
     }
@@ -66,22 +64,19 @@ public class ChasePlayerState : BaseState
             _path = null;
             return typeof(WanderState);
         }
-        else if (currentWaypoint >= _path.vectorPath.Count)
+        else if (Vector3.Distance(enemy.transform.position, player.transform.position) <= enemy.attackRange)
         {
-            //reachedTarget = true;
-            //return typeof(AttackState);
-            return typeof(ChasePlayerState);
+            _path = null;
+            return typeof(AttackState);
         }
         else
         {
-            //reachedTarget = false;
             return typeof(ChasePlayerState);
         }
     }
 
     private void Chase()
-    {
-        
+    {     
         if (_path.vectorPath.Count > currentWaypoint)
         {
             Vector3 dir = (_path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -91,5 +86,4 @@ public class ChasePlayerState : BaseState
                 currentWaypoint++;
         }
     } 
-
 }
