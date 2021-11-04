@@ -14,12 +14,11 @@ public class Enemy : MonoBehaviour
     public float speed = 5f;
     public float playerDetectionRadius = 10f;
     public float attackCooldown = 1f;
+    public float enemyDamage = 10f;
     public GameObject projectilePrefab;
 
-    [SerializeField] private int maxHealth = 100;
     public int attackRange = 1;
 
-    private int currentHealth;
     public Transform _target { get; private set; } // player or monument
     public StateMachine StateMachine => GetComponent <StateMachine>();
 
@@ -27,7 +26,6 @@ public class Enemy : MonoBehaviour
     {
         _target = null;
         InitializeStateMachine();
-        currentHealth = maxHealth;
     }
 
     private void InitializeStateMachine()
@@ -46,18 +44,14 @@ public class Enemy : MonoBehaviour
         _target = target;
     }
 
-    public void TakeDamage(int dmg)
+    private void OnCollisionEnter(Collision other)
     {
-        currentHealth -= dmg;
-
-        if(currentHealth <= 0)
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Monument"))
         {
-            Die();
+            Debug.Log("Hitei");
+            other.gameObject.GetComponent<Health>().TakeDamage(enemyDamage);
         }
     }
-    private void Die()
-    {
-        Debug.Log("Died");
-    }
+
 
 }

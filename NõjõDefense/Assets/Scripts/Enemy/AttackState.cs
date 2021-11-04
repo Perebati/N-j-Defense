@@ -16,6 +16,7 @@ public class AttackState : BaseState
         this.enemy = enemy;
         rb = this.enemy.GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
+        timer = enemy.attackCooldown; // !-------------------------------------
     }
 
     public override Type Tick()
@@ -67,4 +68,5 @@ public class AttackState : BaseState
         }
         return typeof(AttackState);
     }
+
 }

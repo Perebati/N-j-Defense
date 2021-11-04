@@ -6,11 +6,11 @@ public class GameManager : MonoBehaviour
 {
     [HideInInspector] public static GameManager instance;
 
-    public float playerMaxHealth;
-
     private void Awake()
-    {
+    {     
+        
         instance = this;
-        DontDestroyOnLoad(instance);      
+
+        DontDestroyOnLoad(instance);
     }
 }

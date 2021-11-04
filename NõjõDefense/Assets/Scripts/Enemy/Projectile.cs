@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float bulletSpeed = 10f;
+    [SerializeField] private float projectileDamage = 10f;
 
 
     public void Start()
@@ -16,7 +17,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // dano
+            other.gameObject.GetComponent<Health>().TakeDamage(projectileDamage);
             // efeito
             Destroy(this.gameObject);
         }

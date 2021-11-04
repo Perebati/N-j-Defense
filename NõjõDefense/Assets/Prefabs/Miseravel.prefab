@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1519466108254152751}
   - component: {fileID: 1519466108254152749}
-  - component: {fileID: 1519466108254152748}
-  - component: {fileID: 1519466108254152739}
   - component: {fileID: 4617306492099492905}
   - component: {fileID: 8641534455985040665}
+  - component: {fileID: 1519466108254152748}
+  - component: {fileID: 1519466108254152739}
+  - component: {fileID: -8210669041462177367}
   m_Layer: 16
   m_Name: Miseravel
   m_TagString: Enemy
@@ -52,9 +53,38 @@ MonoBehaviour:
   speed: 5
   playerDetectionRadius: 20
   attackCooldown: 1
+  enemyDamage: 10
   projectilePrefab: {fileID: 0}
-  maxHealth: 80
   attackRange: 2
+--- !u!65 &4617306492099492905
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519466108254152747}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8641534455985040665
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519466108254152747}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!114 &1519466108254152748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,35 +125,19 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
---- !u!65 &4617306492099492905
-BoxCollider:
+--- !u!114 &-8210669041462177367
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1519466108254152747}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &8641534455985040665
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519466108254152747}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &6105603590446155799
 GameObject:
   m_ObjectHideFlags: 0

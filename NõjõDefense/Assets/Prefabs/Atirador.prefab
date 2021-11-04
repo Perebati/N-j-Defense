@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6035795376898473570}
   - component: {fileID: 6035795376898473571}
   - component: {fileID: 6035795376898473580}
+  - component: {fileID: -6351337579493326701}
   m_Layer: 16
   m_Name: Atirador
   m_TagString: Enemy
@@ -111,8 +112,8 @@ MonoBehaviour:
   speed: 2
   playerDetectionRadius: 9999
   attackCooldown: 2
+  enemyDamage: 10
   projectilePrefab: {fileID: 2947194366143610832, guid: e61912a9400e70e419bf51822bd8a2f5, type: 3}
-  maxHealth: 50
   attackRange: 20
 --- !u!114 &6035795376898473571
 MonoBehaviour:
@@ -154,6 +155,19 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &-6351337579493326701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035795376898473581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &7957368095560886909
 GameObject:
   m_ObjectHideFlags: 0

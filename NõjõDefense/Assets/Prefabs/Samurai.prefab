@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5321361419016325771}
   - component: {fileID: 4209566839950530530}
   - component: {fileID: 6550841557948391924}
+  - component: {fileID: -1943678351681761238}
   m_Layer: 16
   m_Name: Samurai
   m_TagString: Enemy
@@ -81,8 +82,8 @@ MonoBehaviour:
   speed: 4
   playerDetectionRadius: 9999
   attackCooldown: 2
+  enemyDamage: 10
   projectilePrefab: {fileID: 0}
-  maxHealth: 500
   attackRange: 3
 --- !u!114 &4209566839950530530
 MonoBehaviour:
@@ -124,6 +125,19 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &-1943678351681761238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956295515288574828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &6760520847422866122
 GameObject:
   m_ObjectHideFlags: 0

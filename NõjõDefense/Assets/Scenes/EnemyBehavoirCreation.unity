@@ -737,7 +737,7 @@ GameObject:
   - component: {fileID: 744689645}
   - component: {fileID: 744689644}
   - component: {fileID: 744689648}
-  - component: {fileID: 744689649}
+  - component: {fileID: 744689650}
   m_Layer: 15
   m_Name: Player
   m_TagString: Player
@@ -839,7 +839,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &744689649
+--- !u!114 &744689650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -848,9 +848,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 744689643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4eb585971db0de4b98aa1dbe03d92b5, type: 3}
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &765573332
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +864,7 @@ GameObject:
   - component: {fileID: 765573335}
   - component: {fileID: 765573334}
   - component: {fileID: 765573333}
+  - component: {fileID: 765573337}
   m_Layer: 0
   m_Name: Monument
   m_TagString: Monument
@@ -947,6 +949,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &765573337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765573332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &846664527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,7 +1021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96fbc45ad7eeb504fa3dbc0d0ee472f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMaxHealth: 10
 --- !u!4 &954460084
 Transform:
   m_ObjectHideFlags: 0
@@ -1344,6 +1358,7 @@ GameObject:
   - component: {fileID: 1820816105}
   - component: {fileID: 1820816104}
   - component: {fileID: 1820816103}
+  - component: {fileID: 1820816107}
   m_Layer: 0
   m_Name: Monument
   m_TagString: Monument
@@ -1428,6 +1443,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1820816107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820816102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1905154174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,6 +1580,7 @@ GameObject:
   - component: {fileID: 1932621044}
   - component: {fileID: 1932621043}
   - component: {fileID: 1932621042}
+  - component: {fileID: 1932621046}
   m_Layer: 0
   m_Name: Monument
   m_TagString: Monument
@@ -1636,6 +1665,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1932621046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932621041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1957675247
 GameObject:
   m_ObjectHideFlags: 0
