@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public float speed = 5f;
     public float playerDetectionRadius = 10f;
     public float attackCooldown = 1f;
+    public GameObject projectilePrefab;
 
     [SerializeField] private int maxHealth = 100;
     public int attackRange = 1;

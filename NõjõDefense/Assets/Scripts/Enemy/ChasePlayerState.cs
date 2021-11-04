@@ -14,7 +14,7 @@ public class ChasePlayerState : BaseState
     Rigidbody rb;
 
     Path _path;
-    private float nextWaypointDistance = 1f;
+    private float nextWaypointDistance = .8f;
     int currentWaypoint = 0;
 
     public ChasePlayerState(Enemy enemy) : base(enemy.gameObject)
@@ -57,7 +57,7 @@ public class ChasePlayerState : BaseState
         return CheckTarget();
     }
 
-    private Type CheckTarget() // check if the player is in range, else, target = monument
+    private Type CheckTarget()
     {
         if (enemy.enemyType == Enemy.EnemyType.MISERAVEL && Vector3.Distance(enemy.transform.position, player.transform.position) > enemy.playerDetectionRadius)
         {
@@ -65,7 +65,7 @@ public class ChasePlayerState : BaseState
             return typeof(WanderState);
         }
         else if (Vector3.Distance(enemy.transform.position, player.transform.position) <= enemy.attackRange)
-        {
+        {    
             _path = null;
             return typeof(AttackState);
         }

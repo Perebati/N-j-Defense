@@ -31,9 +31,19 @@ public class AttackState : BaseState
     public void Attack()
     {
         timer = 0;
+        GFX gfx = transform.GetComponentInChildren<GFX>();
 
-        Debug.Log(enemy.enemyType + " atacou");
         //animacao de atk
+
+        if (enemy.enemyType != Enemy.EnemyType.ATIRADOR)
+            return;
+               
+        GameObject projectile = GameObject.Instantiate(enemy.projectilePrefab, gfx.firePoint.position, gfx.transform.rotation);
+        Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+        projectileRb.AddForce(gfx.firePoint.forward * projectile.GetComponent<Projectile>().bulletSpeed, ForceMode.Impulse);
+        projectile.GetComponent<Projectile>().Start();          
+        
+
     }
     private Type NextState()
     {

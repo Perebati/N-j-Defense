@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Monument
+  - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -20,9 +22,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - Obstacle
+  - Player
+  - Enemy
   - 
   - 
   - 

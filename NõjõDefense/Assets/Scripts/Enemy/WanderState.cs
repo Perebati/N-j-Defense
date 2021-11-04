@@ -80,8 +80,8 @@ public class WanderState : BaseState
         float d2 = Vector3.Distance(enemy.transform.position, monument[2].transform.position);
 
         if (d0 < d1 && d0 < d2)      
-            index = 0;
-        
+            index = 0;   
+        else 
         if (d2 < d0 && d2 < d1)
             index = 2;
 
