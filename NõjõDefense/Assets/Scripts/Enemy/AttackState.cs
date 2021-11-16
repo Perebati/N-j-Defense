@@ -34,7 +34,7 @@ public class AttackState : BaseState
         timer = 0;
         GFX gfx = transform.GetComponentInChildren<GFX>();
 
-        //animacao de atk
+        //animacao de atk (colisor)
 
         if (enemy.enemyType != Enemy.EnemyType.ATIRADOR)
             return;

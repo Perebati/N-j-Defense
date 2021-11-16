@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 100f;
+    [SerializeField] public float maxHealth = 100f;
+
+
     private float currentHealth;
     
     private void Start()
@@ -16,6 +19,9 @@ public class Health : MonoBehaviour
     {
         currentHealth -= value;
 
+        if (CompareTag("Player"))
+            HealthBar.instance.UpdateSlider(-value);
+
         if (currentHealth <= 0)
         {
             Die();
@@ -24,9 +30,14 @@ public class Health : MonoBehaviour
     }
     private void Die()
     {
-        if (!gameObject.CompareTag("Player")) // enemy, monument
+        if (!gameObject.CompareTag("Player"))
         {
+            Enemy enemy = this.gameObject.GetComponent<Enemy>();
             //animacao
+            GameManager.instance.UpdatePoints(enemy.enemyDamage);
+            SpawnManager.currentActiveTroops--;
+            PointsUpdate.UpdatePoints((int)enemy.enemyDamage * 10);
+
             Destroy(this.gameObject, 0f); //tempo de animacao
         } else
         {

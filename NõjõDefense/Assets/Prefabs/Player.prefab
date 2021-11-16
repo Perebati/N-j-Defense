@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6177542532585351004}
   - component: {fileID: 6177542532585350978}
   - component: {fileID: 6177542532585350979}
+  - component: {fileID: 8178762224601414989}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6177542532585351006}
-  m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -67,6 +68,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 6177542533924015789}
+  Wall:
+    serializedVersion: 2
+    m_Bits: 0
   moveSpeed: 6
   airMultiplier: 0.4
   walkSpeed: 10
@@ -78,12 +82,14 @@ MonoBehaviour:
   dashKey: 101
   groundDrag: 6
   airDrag: 2
-  dashSpeed: 50
   groundCheck: {fileID: 6177542533022955446}
   groundMask:
     serializedVersion: 2
     m_Bits: 256
   groundDistance: 0.1
+  dashSpeed: 50
+  dashTime: 1
+  dashDelay: 1
 --- !u!114 &6177542532585350978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,6 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c4d4837e5dcbd4d96075834d433fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Wall:
+    serializedVersion: 2
+    m_Bits: 0
   orientation: {fileID: 6177542533924015789}
   wallDistance: 0.6
   minimumJumpHeight: 1.5
@@ -124,6 +133,19 @@ MonoBehaviour:
   wallRunfovTime: 10
   camTilt: 10
   camTiltTime: 10
+--- !u!114 &8178762224601414989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177542532585351006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74782e873db5108468f665a0d1b1c3f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &6177542533003789151
 GameObject:
   m_ObjectHideFlags: 0

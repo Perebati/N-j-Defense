@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -24,6 +25,12 @@ public class SpawnManager : MonoBehaviour
 
     private float timer = 0f;
 
+    // rounds 
+    private int currentRound = 1;
+    [HideInInspector] public static int currentActiveTroops = 0;
+    [SerializeField] private TextMeshProUGUI roundUI;
+
+
     private void Awake()
     {
         instance = this;
@@ -33,6 +40,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        currentRound = 1;
+        roundUI.text = "Round " + currentRound;
         for (int i = 0; i < transform.childCount; i++)
         {
             spawnPoints[i] = transform.GetChild(i).gameObject;
@@ -41,7 +50,17 @@ public class SpawnManager : MonoBehaviour
         troopSum = (float)maxMISERAVEL + maxATIRADOR + maxSAMURAI;
         chances = new float[] { maxMISERAVEL / troopSum, maxATIRADOR / troopSum, maxSAMURAI/troopSum};
         maxTroops = multiplyFactor * (maxSAMURAI + maxMISERAVEL + maxATIRADOR);
+        activeTroops = 0;
         StartCoroutine(InitialTroops());
+    }
+    private void NextRound()
+    {
+        currentRound++;
+        roundUI.text = "Round " + currentRound;
+        maxTroops += (int)troopSum * multiplyFactor;
+        activeTroops = 0;
+        StartCoroutine(InitialTroops());
+
     }
 
     IEnumerator InitialTroops()
@@ -52,21 +71,39 @@ public class SpawnManager : MonoBehaviour
             Instantiate(ChooseTroop(), spawnPoints[currentSpawnPoint].transform.position, transform.rotation);
             UpadateSpawnPoint();
             activeTroops++;
+            currentActiveTroops++;
             yield return new WaitForSeconds(.1f);
         }
+
+        StartCoroutine(SpawnRemainingTroops());
+
+        yield return null;
+    }
+
+    IEnumerator SpawnRemainingTroops()
+    {
+        while (activeTroops < maxTroops)
+        {
+            timer = 0f;
+            Instantiate(ChooseTroop(), spawnPoints[currentSpawnPoint].transform.position, transform.rotation);
+            UpadateSpawnPoint();
+            activeTroops++;
+            currentActiveTroops++;
+            yield return new WaitForSeconds(1f);
+        }
+        
         yield return null;
     }
 
     private void LateUpdate()
     {
         timer += Time.deltaTime;
-        if (timer > 2f && activeTroops < maxTroops)
+        if (timer > 3f)
         {
-            timer = 0f;
-            Instantiate(ChooseTroop(), spawnPoints[currentSpawnPoint].transform.position, transform.rotation);
-            UpadateSpawnPoint();
-            activeTroops++;
+            if (currentActiveTroops <= 0)
+                NextRound();
         }
+        
     }
 
     private GameObject ChooseTroop()
