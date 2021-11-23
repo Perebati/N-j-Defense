@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6177542532585350978}
   - component: {fileID: 6177542532585350979}
   - component: {fileID: 8178762224601414989}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &6177542533003789151
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6177542533003789148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera Position
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6177542533022955446}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground Check
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +219,7 @@ GameObject:
   - component: {fileID: 6177542533382078589}
   - component: {fileID: 6177542533382078588}
   - component: {fileID: 6177542533382078591}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,7 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6177542533924015789}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

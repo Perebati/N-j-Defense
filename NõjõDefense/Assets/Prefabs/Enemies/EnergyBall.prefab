@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6345470986987131053}
   - component: {fileID: 1580130539897805710}
   - component: {fileID: 1775034338897818712}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnergyBall
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,7 +93,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2947194366143610832}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.4
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7886484306189978582}
   - component: {fileID: 3006758673596592452}
   - component: {fileID: 4025501424575521313}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

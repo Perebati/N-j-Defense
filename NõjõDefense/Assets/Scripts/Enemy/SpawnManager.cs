@@ -29,6 +29,7 @@ public class SpawnManager : MonoBehaviour
     private int currentRound = 1;
     [HideInInspector] public static int currentActiveTroops = 0;
     [SerializeField] private TextMeshProUGUI roundUI;
+    [SerializeField] private GameObject monumentsHolder;
 
 
     private void Awake()
@@ -56,6 +57,7 @@ public class SpawnManager : MonoBehaviour
     private void NextRound()
     {
         currentRound++;
+        monumentsHolder.GetComponent<MonumentsHolder>().ResetMonument();
         roundUI.text = "Round " + currentRound;
         maxTroops += (int)troopSum * multiplyFactor;
         activeTroops = 0;
@@ -124,7 +126,7 @@ public class SpawnManager : MonoBehaviour
                 return prefabs[i];
             }
         }     
-        return null; // unreacheble
+        return prefabs[0]; // unreacheble
     }
 
     private void UpadateSpawnPoint()

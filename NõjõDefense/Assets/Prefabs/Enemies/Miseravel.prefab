@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1519466108254152748}
   - component: {fileID: 1519466108254152739}
   - component: {fileID: -8210669041462177367}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: Miseravel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   attackCooldown: 1
   enemyDamage: 10
   projectilePrefab: {fileID: 0}
-  attackRange: 2
+  attackRange: 0
 --- !u!65 &4617306492099492905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &6105603590446155799
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 5419761279027331569}
   - component: {fileID: 2953029686243597623}
   - component: {fileID: 210949208}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

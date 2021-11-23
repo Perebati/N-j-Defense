@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4209566839950530530}
   - component: {fileID: 6550841557948391924}
   - component: {fileID: -1943678351681761238}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: Samurai
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   speed: 4
   playerDetectionRadius: 9999
   attackCooldown: 2
-  enemyDamage: 10
+  enemyDamage: 20
   projectilePrefab: {fileID: 0}
   attackRange: 3
 --- !u!114 &4209566839950530530
@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &6760520847422866122
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 1093139623171087474}
   - component: {fileID: 4338973438852460168}
   - component: {fileID: 850199732}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

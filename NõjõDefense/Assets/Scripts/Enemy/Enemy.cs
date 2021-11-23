@@ -53,5 +53,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    float timer = 0;
+    private void OnCollisionStay(Collision other)
+    {
+        timer += Time.deltaTime;
+        if (timer >= attackCooldown)
+        {
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Monument"))
+            {
+                Debug.Log("Hitei");
+                other.gameObject.GetComponent<Health>().TakeDamage(enemyDamage);
+                timer = 0;
+            }
+        }
+    }
+
 
 }

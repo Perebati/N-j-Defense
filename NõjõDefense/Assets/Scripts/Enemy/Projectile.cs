@@ -7,13 +7,16 @@ public class Projectile : MonoBehaviour
     public float bulletSpeed = 10f;
     [SerializeField] private float projectileDamage = 10f;
 
+    private Collider col;
+
 
     public void Start()
     {
-        Destroy(this.gameObject, 5f);
+        col = GetComponent<Collider>();
+        Destroy(this.gameObject, 4f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {

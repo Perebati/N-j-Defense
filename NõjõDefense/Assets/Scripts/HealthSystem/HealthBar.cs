@@ -8,9 +8,14 @@ public class HealthBar : MonoBehaviour
     public static HealthBar instance;
     private Slider slider;
     private GameObject player;
+    private Coroutine regen;
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(instance);
+        }
         instance = this;
         DontDestroyOnLoad(instance);
     }
@@ -26,6 +31,25 @@ public class HealthBar : MonoBehaviour
     public void UpdateSlider(float value)
     {
         slider.value += value;
+        if (regen != null)
+            StopCoroutine(regen);
+        regen = StartCoroutine(RegenHealth());
+    }
+
+    private IEnumerator RegenHealth()
+    {
+        yield return new WaitForSeconds(3f);
+
+        while (slider.value < slider.maxValue)
+        {
+            slider.value += slider.maxValue / 100;
+            player.GetComponent<Health>().currentHealth = slider.value;
+            yield return new WaitForSeconds(.1f);
+        }
+
+        regen = null;
+        yield return null;
+
     }
 
 }

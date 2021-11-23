@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] public float maxHealth = 100f;
 
 
-    private float currentHealth;
+    [HideInInspector] public float currentHealth;
     
     private void Start()
     {
@@ -21,6 +21,8 @@ public class Health : MonoBehaviour
 
         if (CompareTag("Player"))
             HealthBar.instance.UpdateSlider(-value);
+        if (CompareTag("Monument"))
+            GetComponent<Monument>().TakingDamage();
 
         if (currentHealth <= 0)
         {
@@ -30,15 +32,20 @@ public class Health : MonoBehaviour
     }
     private void Die()
     {
-        if (!gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Enemy"))
         {
             Enemy enemy = this.gameObject.GetComponent<Enemy>();
             //animacao
-            GameManager.instance.UpdatePoints(enemy.enemyDamage);
             SpawnManager.currentActiveTroops--;
             PointsUpdate.UpdatePoints((int)enemy.enemyDamage * 10);
 
             Destroy(this.gameObject, 0f); //tempo de animacao
+
+        } else
+        if (gameObject.CompareTag("Monument"))
+        {
+            gameObject.GetComponent<Monument>().DestroyMonument();
+
         } else
         {
             // game over, menu

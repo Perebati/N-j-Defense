@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - wall
+  - Monument
+  - Obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -12,12 +15,12 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Player
   - wall
   - Ground
-  - 
-  - 
-  - 
+  - Enemy
+  - Projectile
+  - Monument
   - 
   - 
   - 

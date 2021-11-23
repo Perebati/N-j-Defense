@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4955359067002079715}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6035795376898473571}
   - component: {fileID: 6035795376898473580}
   - component: {fileID: -6351337579493326701}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: Atirador
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -113,7 +113,8 @@ MonoBehaviour:
   playerDetectionRadius: 9999
   attackCooldown: 2
   enemyDamage: 10
-  projectilePrefab: {fileID: 2947194366143610832, guid: e61912a9400e70e419bf51822bd8a2f5, type: 3}
+  projectilePrefab: {fileID: 2947194366143610832, guid: e61912a9400e70e419bf51822bd8a2f5,
+    type: 3}
   attackRange: 20
 --- !u!114 &6035795376898473571
 MonoBehaviour:
@@ -168,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
 --- !u!1 &7957368095560886909
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +181,7 @@ GameObject:
   - component: {fileID: 4221927000955087705}
   - component: {fileID: 8155347338415273506}
   - component: {fileID: 571154453}
-  m_Layer: 16
+  m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
