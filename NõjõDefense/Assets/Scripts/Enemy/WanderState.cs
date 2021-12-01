@@ -65,6 +65,8 @@ public class WanderState : BaseState
         if (Vector3.Distance(_player.transform.position, enemy.transform.position) < enemy.playerDetectionRadius)
         {
             enemy.SetTarget(_player.transform);
+            //GFX gfx = transform.GetComponentInChildren<GFX>();
+            //gfx.anim.SetTrigger("Turn");
             return _player.transform;
         }     
         else

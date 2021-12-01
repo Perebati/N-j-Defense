@@ -13,9 +13,10 @@ public class Enemy : MonoBehaviour
     public EnemyType enemyType;
     public float speed = 5f;
     public float playerDetectionRadius = 10f;
-    public float attackCooldown = 1f;
+    [SerializeField] public float attackCooldown = 1f;
     public float enemyDamage = 10f;
     public GameObject projectilePrefab;
+    public Transform enemyFeet;
 
     public int attackRange = 1;
 
@@ -26,6 +27,11 @@ public class Enemy : MonoBehaviour
     {
         _target = null;
         InitializeStateMachine();
+    }
+
+    private void Start()
+    {
+        enemyFeet = transform.GetChild(1);
     }
 
     private void InitializeStateMachine()

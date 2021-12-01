@@ -31,22 +31,17 @@ public class Monument : MonoBehaviour
     IEnumerator AnimationTriggered()
     {
         yield return null;
-        float timer = 0;
-        while (timer < 3)
-        { 
-            timer += 3f;
-            yield return new WaitForSeconds(3f);
-        }
+
+        yield return new WaitForSeconds(3f);
+
 
         gameObject.SetActive(false);
-
         CheckEndGame();
-
     }
 
     private void CheckEndGame()
     {
-        bool endgame = true;
+       bool endgame = true;
        for (int i = 0; i < monumentsHolder.transform.childCount; i++)
        {
             if (monumentsHolder.transform.GetChild(i).gameObject.activeSelf)

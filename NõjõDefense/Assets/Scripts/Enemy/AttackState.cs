@@ -11,12 +11,14 @@ public class AttackState : BaseState
 
     private float timer = 1f;
 
+    private bool canAttack = true;
+
     public AttackState(Enemy enemy) : base(enemy.gameObject)
     {
         this.enemy = enemy;
         rb = this.enemy.GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
-        timer = enemy.attackCooldown; // !-------------------------------------
+        timer = enemy.attackCooldown + 1; // !-------------------------------------
     }
 
     public override Type Tick()
@@ -34,8 +36,6 @@ public class AttackState : BaseState
         timer = 0;
         GFX gfx = transform.GetComponentInChildren<GFX>();
 
-        //animacao de atk (colisor)
-
         if (enemy.enemyType != Enemy.EnemyType.ATIRADOR)
             return;
                
@@ -48,13 +48,15 @@ public class AttackState : BaseState
     }
     private Type NextState()
     {
+        GFX gfx = transform.GetComponentInChildren<GFX>();
 
         switch (enemy.enemyType)
         {
             case Enemy.EnemyType.MISERAVEL:
 
-                if (Vector3.Distance(player.transform.position, enemy.transform.position) < enemy.playerDetectionRadius)
+                if (Vector3.Distance(player.transform.position, enemy.enemyFeet.position) > enemy.attackRange +2f)
                 {
+                    gfx.anim.SetBool("Attack", false);
                     return typeof(ChasePlayerState);
                 }
                 break;
@@ -62,6 +64,7 @@ public class AttackState : BaseState
             default:
                 if (Vector3.Distance(player.transform.position, enemy.transform.position) > enemy.attackRange + 3f)
                 {
+                    gfx.anim.SetBool("Attack", false);
                     return typeof(ChasePlayerState);
                 }
                 break;

@@ -28,7 +28,6 @@ public class Health : MonoBehaviour
         {
             Die();
         }
-
     }
     private void Die()
     {
@@ -38,6 +37,9 @@ public class Health : MonoBehaviour
             //animacao
             SpawnManager.currentActiveTroops--;
             PointsUpdate.UpdatePoints((int)enemy.enemyDamage * 10);
+
+            GFX gfx = transform.GetComponentInChildren<GFX>();
+            //gfx.Die();
 
             Destroy(this.gameObject, 0f); //tempo de animacao
 

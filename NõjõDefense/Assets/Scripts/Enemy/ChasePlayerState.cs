@@ -14,7 +14,7 @@ public class ChasePlayerState : BaseState
     Rigidbody rb;
 
     Path _path;
-    private float nextWaypointDistance = .8f;
+    private float nextWaypointDistance = 1f;
     int currentWaypoint = 0;
 
     public ChasePlayerState(Enemy enemy) : base(enemy.gameObject)
@@ -40,7 +40,7 @@ public class ChasePlayerState : BaseState
     {
         timer = 0;
         if (seeker.IsDone())
-            seeker.StartPath(enemy.transform.position, enemy._target.position, OnPathComplete);
+            seeker.StartPath(enemy.enemyFeet.position, enemy._target.position, OnPathComplete);
     }
 
     public override Type Tick()
@@ -51,6 +51,7 @@ public class ChasePlayerState : BaseState
 
         if (_path == null || enemy._target != player.transform)
         {
+           
             return typeof(WanderState);
         }
         Chase();
@@ -62,11 +63,16 @@ public class ChasePlayerState : BaseState
         if (enemy.enemyType == Enemy.EnemyType.MISERAVEL && Vector3.Distance(enemy.transform.position, player.transform.position) > enemy.playerDetectionRadius)
         {
             _path = null;
+            GFX gfx = transform.GetComponentInChildren<GFX>();
+            if (!gfx.anim.GetBool("Turn"))
+                gfx.Turn();
             return typeof(WanderState);
         }
-        else if (Vector3.Distance(enemy.transform.position, player.transform.position) <= enemy.attackRange)
+        else if (Vector3.Distance(enemy.transform.position, player.transform.position) <= enemy.attackRange + 3f)
         {    
             _path = null;
+            GFX gfx = transform.GetComponentInChildren<GFX>();
+            gfx.Attack();
             return typeof(AttackState);
         }
         else
@@ -79,9 +85,10 @@ public class ChasePlayerState : BaseState
     {     
         if (_path.vectorPath.Count > currentWaypoint)
         {
-            Vector3 dir = (_path.vectorPath[currentWaypoint] - rb.position).normalized;
+            Vector3 dir = (_path.vectorPath[currentWaypoint] - enemy.enemyFeet.position).normalized;
+            //rb.velocity = dir * enemy.speed * Time.deltaTime;
             transform.position += dir * enemy.speed * Time.deltaTime;
-            float distance = Vector3.Distance(rb.position, _path.vectorPath[currentWaypoint]);
+            float distance = Vector3.Distance(enemy.enemyFeet.position, _path.vectorPath[currentWaypoint]);
             if (distance < nextWaypointDistance && _path.vectorPath.Count > currentWaypoint)
                 currentWaypoint++;
         }

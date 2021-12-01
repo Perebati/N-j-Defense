@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1357103003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357103004}
+  m_Layer: 9
+  m_Name: Feet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357103004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357103003}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.84, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1519466108254152751}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1519466108254152747
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,11 +40,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1519466108254152751}
   - component: {fileID: 1519466108254152749}
-  - component: {fileID: 4617306492099492905}
   - component: {fileID: 8641534455985040665}
   - component: {fileID: 1519466108254152748}
   - component: {fileID: 1519466108254152739}
   - component: {fileID: -8210669041462177367}
+  - component: {fileID: 710892434931300379}
   m_Layer: 9
   m_Name: Miseravel
   m_TagString: Enemy
@@ -34,6 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5419761279027331569}
+  - {fileID: 1357103004}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -50,25 +81,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
-  speed: 5
+  speed: 7
   playerDetectionRadius: 20
-  attackCooldown: 1
+  attackCooldown: 1.1
   enemyDamage: 10
   projectilePrefab: {fileID: 0}
+  enemyFeet: {fileID: 0}
   attackRange: 0
---- !u!65 &4617306492099492905
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519466108254152747}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8641534455985040665
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,6 +158,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+--- !u!136 &710892434931300379
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1519466108254152747}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.9566018
+  m_Height: 2.2729504
+  m_Direction: 1
+  m_Center: {x: -0.004612148, y: -0.3597468, z: 0}
 --- !u!1 &6105603590446155799
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +183,7 @@ GameObject:
   - component: {fileID: 5419761279027331569}
   - component: {fileID: 2953029686243597623}
   - component: {fileID: 210949208}
+  - component: {fileID: 575112194}
   m_Layer: 9
   m_Name: GFX
   m_TagString: Untagged
@@ -211,7 +245,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d734240abe4b9c747a03bd77952c8639, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c3b1514226d7174cbed9db3d0b7d559, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -235,3 +269,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 0}
+  anim: {fileID: 0}
+--- !u!95 &575112194
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6105603590446155799}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9da13b166e076bc468df96546d821e7e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
