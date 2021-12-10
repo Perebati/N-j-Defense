@@ -40,13 +40,7 @@ public class GFX : MonoBehaviour
 
     public void Turn()
     {
-        anim.SetBool("Turn", true);
-        int rng = Random.Range(0, 2);
-        if (rng == 0)
-            anim.SetTrigger("Turn1");
-        else
-            anim.SetTrigger("Turn2");
-
+        anim.SetTrigger("Turn");
         
         StartCoroutine(TurnAnim());
     }

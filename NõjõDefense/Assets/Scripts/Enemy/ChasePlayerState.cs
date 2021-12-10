@@ -63,16 +63,13 @@ public class ChasePlayerState : BaseState
         if (enemy.enemyType == Enemy.EnemyType.MISERAVEL && Vector3.Distance(enemy.transform.position, player.transform.position) > enemy.playerDetectionRadius)
         {
             _path = null;
-            GFX gfx = transform.GetComponentInChildren<GFX>();
-            if (!gfx.anim.GetBool("Turn"))
-                gfx.Turn();
+            GFX gfx = transform.GetComponentInChildren<GFX>();  
+            gfx.anim.SetTrigger("Turn1");
             return typeof(WanderState);
         }
-        else if (Vector3.Distance(enemy.transform.position, player.transform.position) <= enemy.attackRange + 3f)
+        else if (Vector3.Distance(enemy.transform.position, player.transform.position) <= enemy.attackRange + 2f)
         {    
             _path = null;
-            GFX gfx = transform.GetComponentInChildren<GFX>();
-            gfx.Attack();
             return typeof(AttackState);
         }
         else

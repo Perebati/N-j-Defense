@@ -9,7 +9,7 @@ public class AttackState : BaseState
     private Rigidbody rb;
     GameObject player;
 
-    private float timer = 1f;
+    private float timer;
 
     private bool canAttack = true;
 
@@ -18,7 +18,7 @@ public class AttackState : BaseState
         this.enemy = enemy;
         rb = this.enemy.GetComponent<Rigidbody>();
         player = GameObject.FindWithTag("Player");
-        timer = enemy.attackCooldown + 1; // !-------------------------------------
+        timer = 9f; // !-------------------------------------
     }
 
     public override Type Tick()
@@ -35,6 +35,7 @@ public class AttackState : BaseState
     {
         timer = 0;
         GFX gfx = transform.GetComponentInChildren<GFX>();
+        gfx.Attack();
 
         if (enemy.enemyType != Enemy.EnemyType.ATIRADOR)
             return;
