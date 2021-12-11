@@ -36,9 +36,13 @@ public class AttackState : BaseState
         timer = 0;
         GFX gfx = transform.GetComponentInChildren<GFX>();
         gfx.Attack();
-
+        AttackAudio atkAudio = transform.GetComponent<AttackAudio>();
+        atkAudio.PlayAttackAudio();
         if (enemy.enemyType != Enemy.EnemyType.ATIRADOR)
+        {
+            enemy._target.GetComponent<Health>().TakeDamage(enemy.enemyDamage);
             return;
+        }
                
         GameObject projectile = GameObject.Instantiate(enemy.projectilePrefab, gfx.firePoint.position, gfx.transform.rotation);
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
