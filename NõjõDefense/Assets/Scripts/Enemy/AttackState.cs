@@ -61,14 +61,17 @@ public class AttackState : BaseState
         {
             case Enemy.EnemyType.MISERAVEL:
 
-                if (Vector3.Distance(player.transform.position, enemy.enemyFeet.position) < Vector3.Distance(enemy._target.transform.position, enemy.enemyFeet.position) + enemy.attackRange)
+                if (Vector3.Distance(player.transform.position, enemy.enemyFeet.position) < Vector3.Distance(enemy._target.transform.position, enemy.enemyFeet.position) + enemy.attackRange && !enemy._target.CompareTag("Player"))
                 {
                     gfx.anim.SetBool("Attack", false);
                     return typeof(ChasePlayerState);
                 }
 
                 if (!enemy._target.transform.gameObject.activeSelf)
+                {
+                    gfx.anim.SetBool("Attack", false);
                     return typeof(ChasePlayerState);
+                }
                 break;
 
             default:

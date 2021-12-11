@@ -23,7 +23,10 @@ public class PointsUpdate : MonoBehaviour
         totalPoints += value;
         pointsTMP.text = "" + totalPoints;
         if (totalPoints > maxPoints)
+        {
+            HighScoreSC.points = totalPoints;
             maxPoints = totalPoints;
+        }
     }
 
 }

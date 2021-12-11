@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MonumentsHolder : MonoBehaviour
 {
@@ -69,7 +70,7 @@ public class MonumentsHolder : MonoBehaviour
 
     private void EndGame()
     {
-        //SceneManager.LoadScene("EndScene");
+        SceneManager.LoadScene("EndScene");
         Debug.Log("Todos os monumentos destruidos");
     }
 

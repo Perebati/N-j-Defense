@@ -9,6 +9,8 @@ public class Health : MonoBehaviour
 
 
     [HideInInspector] public float currentHealth;
+
+    [SerializeField] private AudioClip deathSound;
     
     private void Start()
     {
@@ -39,9 +41,9 @@ public class Health : MonoBehaviour
             PointsUpdate.UpdatePoints((int)enemy.enemyDamage * 10);
 
             GFX gfx = transform.GetComponentInChildren<GFX>();
-            //gfx.Die();
+            enemy.GetComponent<AudioSource>().PlayOneShot(deathSound);
 
-            Destroy(this.gameObject, 0f); //tempo de animacao
+            Destroy(this.gameObject, .1f); //tempo de animacao
 
         } else
         if (gameObject.CompareTag("Monument"))
@@ -50,7 +52,7 @@ public class Health : MonoBehaviour
 
         } else
         {
-            // game over, menu
+            UnityEngine.SceneManagement.SceneManager.LoadScene("EndScene");
             Debug.Log("Morri, me erra");
         }
     }
