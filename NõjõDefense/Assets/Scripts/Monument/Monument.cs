@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Monument : MonoBehaviour
 {
@@ -11,32 +12,32 @@ public class Monument : MonoBehaviour
 
     [SerializeField] private int index;
 
+    [SerializeField] private MonumentHealthUI monumentUI;
+
     void Start()
     {
         monumentsHolder = transform.parent.gameObject;
     }
 
 
-    public void TakingDamage()
+    public void TakingDamage(float value)
     {
         transform.parent.GetComponent<MonumentsHolder>().ShowMessage(gameObject.name, index);
+        monumentUI.UpdateHealth(value);
     }
 
     public void DestroyMonument()
     {
         //animacao
-        StartCoroutine(AnimationTriggered());
+        AnimationTriggered();
     }
 
-    IEnumerator AnimationTriggered()
+    private void AnimationTriggered()
     {
-        yield return null;
-
-        yield return new WaitForSeconds(3f);
-
-
+       
+        monumentUI.gameObject.SetActive(false);
         gameObject.SetActive(false);
-        CheckEndGame();
+        monumentsHolder.GetComponent<MonumentsHolder>().CheckEndGame();
     }
 
     private void CheckEndGame()
@@ -56,6 +57,7 @@ public class Monument : MonoBehaviour
 
     private void EndGame()
     {
+        //SceneManager.LoadScene("EndScene");
         Debug.Log("Todos os monumentos destruidos");
     }
 

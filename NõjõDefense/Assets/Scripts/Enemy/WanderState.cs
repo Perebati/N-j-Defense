@@ -51,7 +51,7 @@ public class WanderState : BaseState
             return typeof(WanderState);
         }
 
-        float targetDistance = Chase();
+        float targetDistance = Chase() - 1f;
 
         if (targetDistance < enemy.attackRange)
         {

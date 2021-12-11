@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
         if (CompareTag("Player"))
             HealthBar.instance.UpdateSlider(-value);
         if (CompareTag("Monument"))
-            GetComponent<Monument>().TakingDamage();
+            GetComponent<Monument>().TakingDamage(value);
 
         if (currentHealth <= 0)
         {

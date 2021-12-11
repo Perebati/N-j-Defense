@@ -9,6 +9,8 @@ public class PointsUpdate : MonoBehaviour
 
     private static TextMeshProUGUI pointsTMP;
 
+    public static int maxPoints = 0;
+
     void Start()
     {
         pointsTMP = this.gameObject.GetComponent<TextMeshProUGUI>();
@@ -19,7 +21,9 @@ public class PointsUpdate : MonoBehaviour
     {
         int totalPoints = Int32.Parse(pointsTMP.text);
         totalPoints += value;
-        pointsTMP.text = "" + totalPoints;     
+        pointsTMP.text = "" + totalPoints;
+        if (totalPoints > maxPoints)
+            maxPoints = totalPoints;
     }
 
 }

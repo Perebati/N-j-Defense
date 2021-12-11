@@ -50,29 +50,8 @@ public class Enemy : MonoBehaviour
         _target = target;
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Monument"))
-        {
-            Debug.Log("Hitei");
-            other.gameObject.GetComponent<Health>().TakeDamage(enemyDamage);
-        }
-    }
+    
 
     float timer = 0;
-    private void OnCollisionStay(Collision other)
-    {
-        timer += Time.deltaTime;
-        if (timer >= attackCooldown)
-        {
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Monument"))
-            {
-                Debug.Log("Hitei");
-                other.gameObject.GetComponent<Health>().TakeDamage(enemyDamage);
-                timer = 0;
-            }
-        }
-    }
-
 
 }

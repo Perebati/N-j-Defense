@@ -71,7 +71,7 @@ MonoBehaviour:
   enemyType: 4
   speed: 4
   playerDetectionRadius: 9999
-  attackCooldown: 2
+  attackCooldown: 1
   enemyDamage: 20
   projectilePrefab: {fileID: 0}
   enemyFeet: {fileID: 0}

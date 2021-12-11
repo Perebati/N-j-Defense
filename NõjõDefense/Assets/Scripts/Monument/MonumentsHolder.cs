@@ -8,6 +8,8 @@ public class MonumentsHolder : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] monumentText;
     private Coroutine cr = null;
 
+    [SerializeField] private GameObject[] monumentUI; 
+
     public void ResetMonument()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -17,15 +19,17 @@ public class MonumentsHolder : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(true);
                 transform.GetChild(i).gameObject.GetComponent<Health>().currentHealth = transform.GetChild(i).gameObject.GetComponent<Health>().maxHealth;
             }
+            monumentUI[i].SetActive(true);
         }
+
     }
 
     public void ShowMessage(string name, int index)
     {
-        if (cr == null)
-        {
-            cr = StartCoroutine(TakeDamage(name, index));
-        }
+        if (cr != null)
+            StopCoroutine(cr);
+        cr = StartCoroutine(TakeDamage(name, index));
+        
         
     }
 
@@ -46,6 +50,27 @@ public class MonumentsHolder : MonoBehaviour
         monumentText[index].gameObject.SetActive(false);
         cr = null;
         yield return null;
+    }
+
+    public void CheckEndGame()
+    {
+        bool endgame = true;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.activeSelf)
+            {
+                endgame = false;
+            }
+        }
+
+        if (endgame)
+            EndGame();
+    }
+
+    private void EndGame()
+    {
+        //SceneManager.LoadScene("EndScene");
+        Debug.Log("Todos os monumentos destruidos");
     }
 
 }

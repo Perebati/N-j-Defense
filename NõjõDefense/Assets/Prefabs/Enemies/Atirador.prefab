@@ -132,7 +132,7 @@ MonoBehaviour:
   speed: 5
   playerDetectionRadius: 9999
   attackCooldown: 2
-  enemyDamage: 10
+  enemyDamage: 30
   projectilePrefab: {fileID: 2947194366143610832, guid: e61912a9400e70e419bf51822bd8a2f5,
     type: 3}
   enemyFeet: {fileID: 0}
