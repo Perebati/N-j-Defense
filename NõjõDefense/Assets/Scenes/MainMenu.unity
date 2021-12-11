@@ -519,7 +519,8 @@ MonoBehaviour:
     Assets:\n  - Music:  https://www.bensound.com\n  - Lowpoly Nature Village: Hasan3DModels
     (Unity Free Asset)\n  - Japanese-Style: Low Table Pack (Unity Free Asset)\n 
     - Japanese Garden Pack (Unity Free Asset)\n  - Skybox Serie Free (Unity Free
-    Asset)\n  - Fantasy Skybox Free (Unity Free Asset)\n"
+    Asset)\n  - Fantasy Skybox Free (Unity Free Asset)\n  - A* PathFinding Project
+    (Unity Free Asset)\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

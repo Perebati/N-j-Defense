@@ -24,6 +24,11 @@ public class MonumentHealthUI : MonoBehaviour
         regen = StartCoroutine(RegenHealth());
     }
 
+    public void SetMaxHealth()
+    {
+        slider.value = slider.maxValue;
+    }
+
     private IEnumerator RegenHealth()
     {
         yield return new WaitForSeconds(3f);

@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  deathSound: {fileID: 8300000, guid: e1ead900aad319b4986abb7319c48603, type: 3}
 --- !u!136 &710892434931300379
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -46,6 +46,7 @@ public class ChasePlayerState : BaseState
     public override Type Tick()
     {
         timer += Time.deltaTime;
+        enemy.SetTarget(player.transform);
         if (timer > 1f)
             UpdatePath();
 

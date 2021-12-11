@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MonumentsHolder : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class MonumentsHolder : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(true);
                 transform.GetChild(i).gameObject.GetComponent<Health>().currentHealth = transform.GetChild(i).gameObject.GetComponent<Health>().maxHealth;
             }
+            monumentUI[i].GetComponent<MonumentHealthUI>().SetMaxHealth();
             monumentUI[i].SetActive(true);
         }
 
